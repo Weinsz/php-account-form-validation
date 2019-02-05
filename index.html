@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form Validation with MySQL</title>
+</head>
+<body>
+    <h1>Form Validation using PHP and MySQL</h1>
+
+    <!-- If you want to switch to MySQLi method replace with this: <form action="./database_mysqli.php" method="post" target="_self"> -->
+    <form action="./database_pdo.php" method="post" target="_self">
+        First Name:<br>
+        <input type="text" name="firstname" maxlength="40" pattern="[a-zA-Z]+"><br>
+        Last Name:<br>
+        <input type="text" name="lastname" maxlength="40" pattern="[a-zA-Z]+"><br>
+        Email: (*)<br>
+        <input type="email" name="email" maxlength="255" required autofocus><br>
+        Username: (*)<br>
+        <input type="text" name="username" maxlength="20" required><br>
+        Password: (*)<br>
+        <input type="password" name="pwd" pattern="{8,}" maxlength="64" required><br>
+        Gender:<br>
+        <input type="radio" name="gender" value="M" checked> Male 
+        <input type="radio" name="gender" value="F" > Female<br>
+        Country:<br>
+        <input type="text" name="country" maxlength="20"><br>
+        City:<br>
+        <input type="text" name="city" maxlength="20"><br>
+        Birth Date:<br>
+        <input type="date" name="birthdate"><br><br>
+        <input type="submit" value="Submit" name="send">
+        <pre>(*) means that it's necessary to insert something in the field.</pre>    
+    </form>
+</body>
+</html>
