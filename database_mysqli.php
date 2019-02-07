@@ -1,10 +1,10 @@
 <?php
 
 // Define the connection infos
-$servername = "localhost";
-$username = "root";
-$password = "L0g1c001";
-$database = "accounts";
+$servername = "your_host_ip";
+$username = "your_user";
+$password = "your_password";
+$database = "your_db_name";
 
 // Instantiate the connection to the database
 $connection = new mysqli($servername, $username, $password, $database);
