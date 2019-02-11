@@ -1,8 +1,12 @@
 <?php
     // Connection infos
-    $dsn = "mysql:dbname=your_db_name;host=your_host_ip";
-    $username = "your_user";
-    $password = "your_password";
+    // $dsn = "mysql:dbname=your_db_name;host=your_host_ip";
+    // $username = "your_user";
+    // $password = "your_password";
+
+    $dsn = "mysql:dbname=accounts;host=127.0.0.1";
+    $username = "root";
+    $password = "L0g1c001";
 
     // Try statement containing all the queries to the database and the prepared statements to prevent SQL injection attacks
     try {
@@ -58,7 +62,7 @@
                 ':last_name'=>$_POST['lastname'],
                 ':email'=>$_POST['email'],
                 ':username'=>$_POST['username'],
-                ':password'=>$_POST['pwd'],
+                ':password'=>$hashed_password = password_hash($_POST['pwd'], PASSWORD_BCRYPT),
                 ':gender'=>$_POST['gender'],
                 ':country'=>$_POST['country'],
                 ':city'=>$_POST['city'],
@@ -71,13 +75,23 @@
             "(first_name, last_name, email, username, password, signup_date, gender, country, city, birth_date) ".
             "VALUES (:first_name, :last_name, :email, :username, :password, NOW(), :gender, :country, :city, :birth_date)";
             
-            // Prepared Statement to prevent SQL Injection
-            $preparedStatement = $dbConnection->prepare($sql_query);
-            
-            if($preparedStatement->execute($column_values))
-                echo "Query sent successfully to the Database";
+            // Check if the password inserted in the input box is the same of the hashed one
+            if(password_verify($_POST['pwd'], $hashed_password)) {
+                
+                echo "<br>Valid password inserted<br>";
+
+                // Prepared Statement to prevent SQL Injection
+                $preparedStatement = $dbConnection->prepare($sql_query);
+        
+                if($preparedStatement->execute($column_values))
+                    echo "Query sent successfully to the Database";
+                else
+                    echo "Something went wrong during the query send to the Database";
+                
+            }     
             else
-               echo "Something went wrong during the query send to the Database";
+                die("Invalid password inserted. Something went wrong");
+
                
         }
 
