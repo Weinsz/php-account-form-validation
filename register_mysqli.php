@@ -1,6 +1,6 @@
 <?php
 
-Define the connection infos
+// Define the connection infos
 $servername = "your_host_ip";
 $username = "your_user";
 $password = "your_password";
